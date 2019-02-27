@@ -20,6 +20,8 @@ class Timer {
     this.watchContainerKey = watchContainerKey;
     this.runningStateKey = runningStateKey;
 
+    this.clickValKey = 0;
+
     this.titleWatch = document.createElement('h2');
     this.titleWatch.innerHTML = 'Stop Watch';
 
@@ -43,6 +45,12 @@ class Timer {
 
     this.watchBackgrounKey = document.createElement('div');
     this.watchBackgrounKey.setAttribute('class', 'watch-background-color');
+
+    this.lineMarkWrapperKey = document.createElement('div');
+    this.lineMarkWrapperKey.setAttribute('class', 'watch-mark-position');
+
+    this.watchLineMarkKey = document.createElement('span');
+    this.watchLineMarkKey.setAttribute('class', 'watch-mark-color');
 
     this.btnActionKey = document.createElement('button');
     this.btnActionKey.innerText = 'Start/Stop';
@@ -70,6 +78,7 @@ class Timer {
       this.listStopped.innerText = '';
       this.secondsValKey = 0;
       this.minutesValKey = 0;
+      this.clickValKey = 0;
       this.secondsDomKey.innerHTML = this.secondsValKey;
       this.minutesDomKey.innerHTML = this.minutesValKey;
     });
@@ -80,6 +89,7 @@ class Timer {
     this.btnResetTimer.addEventListener('click', () => {
       this.secondsValKey = 0;
       this.minutesValKey = 0;
+      this.clickValKey = 0;
       this.secondsDomKey.innerHTML = this.secondsValKey;
       this.minutesDomKey.innerHTML = this.minutesValKey;
     });
@@ -88,9 +98,12 @@ class Timer {
 
   increaseTimer() {
     if (this.secondsValKey < 60) {
+      this.clickValKey += 1;
       this.secondsValKey += 1;
       this.secondsDomKey.innerHTML = this.secondsValKey;
       this.minutesDomKey.innerHTML = this.minutesValKey;
+      this.mathSeconds = this.clickValKey * (360 / 60);
+      this.lineMarkWrapperKey.style.transform = `rotateZ(${this.mathSeconds}deg)`;
     } else if (this.secondsValKey === 60) {
       this.secondsValKey = 1;
       this.minutesValKey += 1;
@@ -100,7 +113,7 @@ class Timer {
   }
 
   run() {
-    intervalState = setInterval(this.increaseTimer.bind(this), 10);
+    intervalState = setInterval(this.increaseTimer.bind(this), 1000);
   }
 
   addTime() {
@@ -129,11 +142,13 @@ class Timer {
     });
     this.watchBackgrounKey.appendChild(this.watchTitleWrapKey);
     this.watchBackgrounKey.appendChild(this.watchWrapperPosition);
+    this.lineMarkWrapperKey.appendChild(this.watchLineMarkKey);
+    this.watchBackgrounKey.appendChild(this.lineMarkWrapperKey);
     this.watchContainerKey.appendChild(this.watchBackgrounKey);
   }
 }
 
-const stopWatchers = 2;
+const stopWatchers = 1;
 for (let e = 0; e < stopWatchers; e += 1) {
   const newStopWatch = new Timer(secondsVal, minutesVal, runningState, watchContainer);
 }
