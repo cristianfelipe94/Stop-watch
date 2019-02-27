@@ -20,19 +20,28 @@ class Timer {
     this.watchContainerKey = watchContainerKey;
     this.runningStateKey = runningStateKey;
 
+    this.titleWatch = document.createElement('h2');
+    this.titleWatch.innerHTML = 'Stop Watch';
+    this.titleWatch.setAttribute('class', 'title-wrapper-color');
+
     this.secondsDomKey = document.createElement('h3');
+    this.secondsDomKey.setAttribute('class', 'seconds-wrapper-color');
+
     this.minutesDomKey = document.createElement('h3');
+    this.minutesDomKey.setAttribute('class', 'minutes-wrapper-color');
 
     this.secondsDomKey.innerHTML = this.secondsValKey;
     this.minutesDomKey.innerHTML = this.minutesValKey;
 
-    this.titleWatch = document.createElement('h2');
-    this.titleWatch.innerHTML = 'Stop Watch';
-
     this.listStopped = document.createElement('ul');
+    this.listStopped.setAttribute('class', 'list-wrapper-color');
+
+    this.watchWrapperKey = document.createElement('div');
+    this.watchWrapperKey.setAttribute('class', 'watch-wrapper-color');
 
     this.btnActionKey = document.createElement('button');
     this.btnActionKey.innerText = 'Start/Stop';
+    this.btnActionKey.setAttribute('class', 'action-btn-color');
     this.btnActionKey.addEventListener('click', () => {
       if (this.runningStateKey) {
         this.btnActionKey.innerText = '';
@@ -49,6 +58,7 @@ class Timer {
 
     this.btnResetAll = document.createElement('button');
     this.btnResetAll.innerText = 'Reset All';
+    this.btnResetAll.setAttribute('class', 'clear-btn-color');
     this.btnResetAll.addEventListener('click', () => {
       this.listStopped.innerText = '';
       this.secondsValKey = 0;
@@ -59,6 +69,7 @@ class Timer {
 
     this.btnResetTimer = document.createElement('button');
     this.btnResetTimer.innerText = 'Reset Timer';
+    this.btnResetTimer.setAttribute('class', 'reset-btn-color');
     this.btnResetTimer.addEventListener('click', () => {
       this.secondsValKey = 0;
       this.minutesValKey = 0;
@@ -107,12 +118,15 @@ class Timer {
       this.btnResetTimer,
     ];
     elementsRender.forEach((element) => {
-      this.watchContainerKey.appendChild(element);
+      this.watchWrapperKey.appendChild(element);
     });
+    this.watchContainerKey.appendChild(this.watchWrapperKey);
   }
 }
 
 const stopWatchers = 2;
 for (let e = 0; e < stopWatchers; e += 1) {
-  const newPerson = new Timer(secondsVal, minutesVal, runningState, watchContainer);
+  const newStopWatch = new Timer(secondsVal, minutesVal, runningState, watchContainer);
 }
+
+console.log(watchContainer);
