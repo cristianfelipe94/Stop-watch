@@ -112,4 +112,7 @@ class Timer {
   }
 }
 
-const newPerson = new Timer(secondsVal, minutesVal, runningState, watchContainer);
+const stopWatchers = 2;
+for (let e = 0; e < stopWatchers; e += 1) {
+  const newPerson = new Timer(secondsVal, minutesVal, runningState, watchContainer);
+}
