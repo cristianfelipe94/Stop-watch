@@ -22,7 +22,6 @@ class Timer {
 
     this.titleWatch = document.createElement('h2');
     this.titleWatch.innerHTML = 'Stop Watch';
-    this.titleWatch.setAttribute('class', 'title-wrapper-color');
 
     this.secondsDomKey = document.createElement('h3');
     this.secondsDomKey.setAttribute('class', 'seconds-wrapper-color');
@@ -36,8 +35,14 @@ class Timer {
     this.listStopped = document.createElement('ul');
     this.listStopped.setAttribute('class', 'list-wrapper-color');
 
-    this.watchWrapperKey = document.createElement('div');
-    this.watchWrapperKey.setAttribute('class', 'watch-wrapper-color');
+    this.watchTitleWrapKey = document.createElement('div');
+    this.watchTitleWrapKey.setAttribute('class', 'title-wrapper-color');
+
+    this.watchWrapperPosition = document.createElement('div');
+    this.watchWrapperPosition.setAttribute('class', 'watch-wrapper-color');
+
+    this.watchBackgrounKey = document.createElement('div');
+    this.watchBackgrounKey.setAttribute('class', 'watch-background-color');
 
     this.btnActionKey = document.createElement('button');
     this.btnActionKey.innerText = 'Start/Stop';
@@ -60,6 +65,8 @@ class Timer {
     this.btnResetAll.innerText = 'Reset All';
     this.btnResetAll.setAttribute('class', 'clear-btn-color');
     this.btnResetAll.addEventListener('click', () => {
+      this.btnActionKey.innerText = '';
+      this.btnActionKey.innerText = 'Start';
       this.listStopped.innerText = '';
       this.secondsValKey = 0;
       this.minutesValKey = 0;
@@ -109,18 +116,20 @@ class Timer {
 
   render() {
     const elementsRender = [
-      this.titleWatch,
-      this.secondsDomKey,
       this.minutesDomKey,
+      this.secondsDomKey,
       this.listStopped,
       this.btnActionKey,
       this.btnResetAll,
       this.btnResetTimer,
     ];
+    this.watchTitleWrapKey.appendChild(this.titleWatch);
     elementsRender.forEach((element) => {
-      this.watchWrapperKey.appendChild(element);
+      this.watchWrapperPosition.appendChild(element);
     });
-    this.watchContainerKey.appendChild(this.watchWrapperKey);
+    this.watchBackgrounKey.appendChild(this.watchTitleWrapKey);
+    this.watchBackgrounKey.appendChild(this.watchWrapperPosition);
+    this.watchContainerKey.appendChild(this.watchBackgrounKey);
   }
 }
 

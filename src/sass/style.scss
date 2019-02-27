@@ -1,35 +1,89 @@
 body {
-  background-color: red;
+  background-color: rgb(187, 58, 58);
 }
 
-.title-wrapper-color {
-
-}
-
-.seconds-wrapper-color {
-  
-}
-
-.minutes-wrapper-color {
-  
-}
-
-.list-wrapper-color {
-
+.watch-background-color {
+  position: relative;
+  background-color: white;
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
 }
 
 .watch-wrapper-color {
-  
+  height: 75%;
+  text-align: center;
+}
+
+.title-wrapper-color {
+  font-size: 25px;
+  text-align: center;
+  height: 25%;
+  position: relative;
+}
+
+.title-wrapper-color h2 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+}
+.seconds-wrapper-color {
+  font-size: 40px;
+  display: inline-block;
+  margin: 0;
+  width: 50%;
+  text-align: left;
+}
+
+.seconds-wrapper-color::before {
+  content: ':';
+}
+
+.minutes-wrapper-color {
+  font-size: 40px;
+  display: inline-block;
+  margin: 0;
+  width: 50%;
+  text-align: right;
+}
+
+.list-wrapper-color {
+  height: 25px;
+  width: 80%;
+  overflow: hidden;
+  overflow-y: auto;
+  list-style: none;
+  margin: 10px auto;
+  padding: 0;
+  border: 1px solid red;
+  transition: 1s ease-in-out;
+  &:hover {
+    height: 60px;
+    transition: 0.8s ease-in-out;
+  }
 }
 
 .action-btn-color {
-  
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+  height: 30px;
+  border: 1px solid red;
 }
 
 .clear-btn-color {
-
+  margin: 5px;
+  width: 30%;
+  height: 25px;
+  border: 1px solid red;
 }
 
 .reset-btn-color {
-  
+  margin: 5px;
+  margin: 0 auto;
+  width: 30%;
+  height: 25px;
+  border: 1px solid red;
 }
